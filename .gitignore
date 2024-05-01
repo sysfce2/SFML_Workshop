@@ -1,7 +1,5 @@
 # Custom ignores
 
-libs/*
-!libs/.gitkeep
 _Archive/*
 *.lnk
 *.dll
