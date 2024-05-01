@@ -59,7 +59,7 @@ Play some background music and make some noise when moving.
 
 ## 08 - Text
 
-Display a 'You Won!' text when the win condition is reached.
+Display a 'You Won!' text when the win condition is reached and show the steps taken.
 
 - `sf::Font`
 - `sf::Text`

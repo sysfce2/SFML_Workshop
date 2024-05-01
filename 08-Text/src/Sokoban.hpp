@@ -62,5 +62,8 @@ private:
     sf::Sound m_sound_box;
 
     ResourceHolder<sf::Font> m_font_holder;
-    sf::Text m_text;
+    sf::Text m_winning_text;
+    sf::RectangleShape m_winning_text_background;
+    unsigned int m_step_counter;
+    sf::Text m_step_counter_text;
 };

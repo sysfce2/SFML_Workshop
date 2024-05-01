@@ -8,7 +8,8 @@ Sokoban::Sokoban() :
     m_window_size{ 640u, 640u },
     m_distance{ 64.f },
     m_tile_size{ m_distance, m_distance },
-    m_window{ sf::VideoMode{ m_window_size.x, m_window_size.y }, "08 - Text - SFML Workshop" }
+    m_window{ sf::VideoMode{ m_window_size.x, m_window_size.y }, "08 - Text - SFML Workshop" },
+    m_step_counter{ 0 }
 {
     m_window.setFramerateLimit(60);
 
@@ -65,6 +66,8 @@ void Sokoban::update()
     {
         m_sound_step.play();
         m_player.setPosition(next_position);
+        m_step_counter++;
+        m_step_counter_text.setString(std::to_string(m_step_counter));
     }
 
     update_box_visuals();
@@ -81,10 +84,12 @@ void Sokoban::render()
         m_window.draw(box);
     }
     m_window.draw(m_player);
+    m_window.draw(m_step_counter_text);
 
     if (check_win_condition())
     {
-        m_window.draw(m_text);
+        m_window.draw(m_winning_text_background);
+        m_window.draw(m_winning_text);
     }
 
     m_window.display();
@@ -158,11 +163,21 @@ void Sokoban::init_text()
 {
     m_font_holder.load("DejaVu", "assets/DejaVuSansCondensed-Bold.ttf");
 
-    m_text.setFont(m_font_holder.get("DejaVu"));
-    m_text.setString("You Won!");
-    m_text.setCharacterSize(80u);
-    m_text.setOrigin({ std::round(m_text.getGlobalBounds().width / 2.f), std::round(m_text.getGlobalBounds().height / 2.f) });
-    m_text.setPosition(sf::Vector2f{ m_window_size } / 2.f);
+    m_winning_text.setFont(m_font_holder.get("DejaVu"));
+    m_winning_text.setString("You Won!");
+    m_winning_text.setCharacterSize(80u);
+    auto origin = m_winning_text.getGlobalBounds().getSize() / 2.f + m_winning_text.getLocalBounds().getPosition();
+    m_winning_text.setOrigin({ std::round(origin.x), std::round(origin.y) });
+    m_winning_text.setPosition(sf::Vector2f{ m_window_size } / 2.f);
+
+    m_winning_text_background.setSize(sf::Vector2f{ m_window_size });
+    m_winning_text_background.setFillColor({ 200, 200, 200, 80 });
+    m_winning_text_background.setPosition({ 0.f, 0.f });
+
+    m_step_counter_text.setFont(m_font_holder.get("DejaVu"));
+    m_step_counter_text.setString("0");
+    m_step_counter_text.setCharacterSize(30u);
+    m_step_counter_text.setPosition({ 5.f, 5.f });
 }
 
 void Sokoban::handle_keyboard_input(const sf::Event event)
