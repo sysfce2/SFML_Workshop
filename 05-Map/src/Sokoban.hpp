@@ -1,7 +1,9 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+
 #include "Map.hpp"
 #include "ResourceHolder.hpp"
+
+#include <SFML/Graphics.hpp>
 
 class Sokoban
 {

@@ -1,9 +1,11 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+
 #include "Map.hpp"
 #include "Box.hpp"
 #include "ResourceHolder.hpp"
+
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 class Sokoban
 {

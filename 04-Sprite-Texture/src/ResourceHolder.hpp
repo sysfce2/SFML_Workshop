@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <stdexcept>
+
 #include <cassert>
 
 template <typename Resource>

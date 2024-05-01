@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+
 #include <set>
 
 class Map final : public sf::Drawable

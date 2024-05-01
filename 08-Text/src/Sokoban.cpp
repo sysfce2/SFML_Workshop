@@ -1,5 +1,7 @@
 #include "Sokoban.hpp"
 
+#include <limits>
+
 #include <cmath>
 
 Sokoban::Sokoban() :

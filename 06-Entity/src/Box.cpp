@@ -1,4 +1,5 @@
 #include "Box.hpp"
+
 #include <SFML/Graphics/RenderTarget.hpp>
 
 Box::Box(const sf::Texture& tilesheet, const sf::Vector2f position) :
