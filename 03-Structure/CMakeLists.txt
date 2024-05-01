@@ -1,22 +1,19 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.16)
 
-project(03-Structure)
+project(03-Structure LANGUAGES CXX)
 
-# Used for local testing
-#set(SFML_STATIC_LIBRARIES TRUE)
-#set(SFML_DIR "../libs/lib/cmake/SFML")
-#if(WIN32 AND MSVC)
-#	foreach(flag CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE)
-#		if(${flag} MATCHES "/MD")
-#		string(REGEX REPLACE "/MD" "/MT" ${flag} "${${flag}}")
-#		endif()
-#    endforeach()
-#endif()
+if(NOT TARGET sfml-graphics)
+    find_package(SFML 2 COMPONENTS graphics REQUIRED)
+endif()
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(SFML 2 COMPONENTS graphics REQUIRED)
 add_executable(03-Structure src/main.cpp src/Sokoban.cpp)
 target_link_libraries(03-Structure sfml-graphics)
+target_compile_features(03-Structure PRIVATE cxx_std_17)
+
+if(WIN32 AND SFML_USE_STATIC_STD_LIBS)
+    if(MSVC)
+        set_property(TARGET 03-Structure PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+        target_link_libraries(03-Structure PRIVATE "-static-libgcc" "-static-libstdc++")
+    endif()
+endif()

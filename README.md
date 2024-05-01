@@ -1,6 +1,6 @@
 # SFML Workshop
 
-This repository holds the example code use for an SFML Workshop at the C++ Usergroup Zentralschweiz.
+This repository holds the example code originally used for an SFML Workshop at the C++ Usergroup Zentralschweiz.
 If you find something to improve, don't hesitate to reach out or send a pull request.
 
 ## 01 - Setup
